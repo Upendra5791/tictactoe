@@ -1,0 +1,105 @@
+p {
+    font-family: Lato;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .game-container {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .home,
+  .f-container {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .board-container {
+    display: flex;
+    height: 220px;
+    width: 220px;
+    flex-wrap: wrap;
+    margin: 40px auto;
+  }
+  
+  .cell {
+    height: 70px;
+    width: 70px;
+    background: #54447d;
+    border: 1px solid #ccc;
+    position: relative;
+    color: #fff;
+  }
+  
+  .cell .mark {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    font-size: 60px;
+    display: none;
+  }
+  
+  .cell.Player-1 .mark,
+  .cell.Computer .mark,
+  .cell.Player-2 .mark {
+    display: grid;
+  }
+  
+  .f-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  .f-container .mode {
+    width: 150px;
+    height: 135px;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+    box-shadow: 3px 2px 3px 0 #324a4a;
+    background: #4e8081;
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .f-container .mode:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 2px 6px 0 #636060;
+  }
+  
+  .btn-container {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-around;
+    width: 300px;
+  }
+  
+  .btn {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 20px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: black 0px 1px 3px 0px;
+    transition: 0.2s ease-in;
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+    box-shadow: black 0px 4px 8px 0px;
+  }
+  
+  .result {
+    font-size: 30px;
+  }
+  
