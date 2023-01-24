@@ -1,6 +1,5 @@
-<h2>Let's play TicTacToe</h2>
 <section class="home" *ngIf="!mode">
-  <h3>Select mode</h3>
+  <h2>Let's play TicTacToe</h2>
   <div class="f-container">
     <div class="mode mode-1" (click)="selectMode('multi')">
       Play with your friend
@@ -12,13 +11,11 @@
 </section>
 
 <section class="game-container" *ngIf="!!mode">
+  <h2>Let's play TicTacToe</h2>
   <span>{{ Player1 }} = X</span>&nbsp;&nbsp;
   <span>{{ Player2 }} = O</span>
 
   <p>Current Turn : {{ currentTurn }}</p>
-
-  <p class="result" *ngIf="gameOver">{{ currentTurn }} won!!</p>
-  <p class="result" *ngIf="gameTie">Game Draw!!</p>
 
   <section class="board-container">
     <div
@@ -33,6 +30,10 @@
         {{ cell.mark === Player1 ? 'X' : 'O' }}
       </div>
     </div>
+    <div class="screen" [ngClass]="{'show': gameOver || gameTie}">
+      <p class="result" *ngIf="gameOver">{{ currentTurn }} won!</p>
+      <p class="result" *ngIf="gameTie">Game Draw!</p>
+    </div>
   </section>
 
   <div class="btn-container">
@@ -40,3 +41,5 @@
     <button class="btn" (click)="goHome()">GO HOME</button>
   </div>
 </section>
+
+<app-footer></app-footer>
