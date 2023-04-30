@@ -5,7 +5,11 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:4200",
+    origin: [
+      "http://localhost:4200",
+      "https://upendra5791.github.io",
+      "http://127.0.0.1"
+    ],
   },
 });
 

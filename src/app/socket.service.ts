@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { GameState, Mode } from './app.model';
 import { updateMode, updateGameState } from './store/action';
 import { IState } from './store/reducer';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class SocketService {
@@ -84,7 +85,7 @@ export class SocketService {
   }
 
   public connectSocket() {
-    this.socket = io('http://localhost:3000');
+    this.socket = io(environment.socket);
     console.log(this.socket);
     this.initialiseListeners();
     return this.socket;
