@@ -1,0 +1,68 @@
+p {
+  font-family: Lato;
+}
+
+.cell {
+  height: 70px;
+  width: 70px;
+  background: #54447d;
+  border: 1px solid #ccc;
+  position: relative;
+  color: #fff;
+}
+
+.cell .mark {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  font-size: 60px;
+  display: none;
+}
+
+.cell.Player-1 .mark,
+.cell.Computer .mark,
+.cell.Player-2 .mark {
+  display: grid;
+}
+
+.cell.X .mark,
+.cell.O .mark {
+  display: grid;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.board-container {
+  display: flex;
+  height: 220px;
+  width: 220px;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.board-container .screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgb(37 37 37);
+  display: grid;
+  place-content: center;
+  opacity: 0.9;
+  transition: 0.3s cubic-bezier(0.44, 0.92, 0.69, 1.01);
+  transform: translateX(-220px);
+}
+
+.board-container .screen.show {
+  transform: translateX(0);
+
+  .result {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,12 @@
+<section class="board-container" [ngClass]="{'disabled': !boardEnabled()}">
+  <div *ngFor="let cell of cells" class="cell" [id]="cell.id" [ngClass]="cell.mark"
+    [ngStyle]="{ 'pointer-events': cell.mark !== 'NA' ? 'none' : 'inherit' }" (click)="markCell(cell.id)">
+    <div class="mark">
+      {{ cell.mark }}
+    </div>
+  </div>
+  <div class="screen" [ngClass]="{'show': ['GAMEOVER', 'TIE'].includes(status)}">
+    <p class="result" *ngIf="status === 'GAMEOVER'">{{ currentTurn }} won!</p>
+    <p class="result" *ngIf="status === 'TIE'">Game Draw!</p>
+  </div>
+</section>

@@ -1,45 +1,44 @@
-<section class="home" *ngIf="!mode">
-  <h2>Let's play TicTacToe</h2>
-  <div class="f-container">
-    <div class="mode mode-1" (click)="selectMode('multi')">
-      Play with your friend
-    </div>
-    <div class="mode mode-2" (click)="selectMode('computer')">
-      Play with the computer
-    </div>
-  </div>
-</section>
-
-<section class="game-container" *ngIf="!!mode">
-  <h2>Let's play TicTacToe</h2>
-  <span>{{ Player1 }} = X</span>&nbsp;&nbsp;
-  <span>{{ Player2 }} = O</span>
-
-  <p>Current Turn : {{ currentTurn }}</p>
-
-  <section class="board-container">
-    <div
-      *ngFor="let cell of cells"
-      class="cell"
-      [id]="cell.id"
-      [ngClass]="cell.mark"
-      [ngStyle]="{ 'pointer-events': !!cell.mark ? 'none' : 'auto' }"
-      (click)="markCell(cell.id)"
-    >
-      <div class="mark">
-        {{ cell.mark === Player1 ? 'X' : 'O' }}
+<h2>Let's play Tic Tac Toe</h2>
+<div class="container">
+  <section class="home" *ngIf="gameState === 'OFF'">
+    <div class="f-container">
+      <div class="mode mode-1" (click)="selectMode(Mode.MULTI)">
+        Play with your friend
       </div>
-    </div>
-    <div class="screen" [ngClass]="{'show': gameOver || gameTie}">
-      <p class="result" *ngIf="gameOver">{{ currentTurn }} won!</p>
-      <p class="result" *ngIf="gameTie">Game Draw!</p>
+      <div class="mode mode-2" (click)="selectMode(Mode.COMPUTER)">
+        Play with the computer
+      </div>
     </div>
   </section>
 
+  <section class="join-game" *ngIf="gameState === 'PENDING'">
+    <ng-container *ngIf="!gameCode; else pending">
+      <p>Have a game code?</p>
+      <input type="text" [(ngModel)]="codeInput" />
+      <button class="join btn" (click)="joinGame()">Join</button>
+      <p>OR</p>
+      <button class="start btn" (click)="initiateGame()">Start a New Game</button>
+    </ng-container>
+    <ng-template #pending>
+      <h2 *ngIf="!opponentReady"> Waiting for Opponent...</h2>
+      <p> Your game code is <span class="game-code">{{ gameCode }} </span>. Share it with your friend to start the game.
+      </p>
+    </ng-template>
+  </section>
+
+  <section class="game-container" *ngIf="['ON', 'GAMEOVER', 'TIE'].includes(gameState)">
+    <span>Player-1 = {{ playerMarker }}</span>&nbsp;&nbsp;
+    <span>Player-2 = {{ playerMarker === Marker.X ? Marker.O : Marker.X }}</span>
+
+    <p>You are: {{ playerMarker }}</p>
+    <p>Waiting for: {{ currentTurn }}</p>
+
+    <app-board></app-board>
+
+  </section>
   <div class="btn-container">
-    <button class="btn" (click)="startGame()">CLEAR</button>
+    <button class="btn" *ngIf="mode === Mode.COMPUTER" (click)="clearGame()">CLEAR</button>
     <button class="btn" (click)="goHome()">GO HOME</button>
   </div>
-</section>
-
+</div>
 <app-footer></app-footer>
